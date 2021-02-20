@@ -1,0 +1,30 @@
+.card {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+    padding: 5em;
+    margin: 5em;
+}
+.card--title {
+    margin-bottom: 0.5rem;
+    font-size: 3.2rem;
+}
+.card--img {
+    margin: 0 auto;
+    display: block
+}
+
+/* .card {
+    padding: 2rem 4rem;
+    border-radius: 10px;
+    
+    margin-bottom: 2rem;
+    background-color: white;
+}
+
+.card--title {
+    margin-bottom: 0.5rem;
+    font-size: 3.2rem;
+}
+
+ */

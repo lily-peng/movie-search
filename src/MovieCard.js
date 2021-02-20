@@ -1,4 +1,5 @@
 import defaultPoster from './default-poster.png';
+import './MovieCard.css';
 
 function MovieCard(props) {
     // console.log(`props: ${props}`);
@@ -16,10 +17,10 @@ function MovieCard(props) {
     }
 
     return (
-        <div>
-            <h2>{movie.title} ({movie.id})</h2>
-            <img src={imgUrl} alt={imgAlt} />
-            <h3>{movie.overview}</h3>
+        <div class="card">
+            <h2 class="card--title">{movie.title}</h2>
+            <img class="card--img" src={imgUrl} alt={imgAlt} />
+            <h3 class="card--overview">{movie.overview}</h3>
         </div>
     )
 }
