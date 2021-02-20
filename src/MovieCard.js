@@ -2,12 +2,9 @@ import defaultPoster from './default-poster.png';
 import './MovieCard.css';
 
 function MovieCard(props) {
-    // console.log(`props: ${props}`);
     const {movie} = props;
-    // console.log(`movie: ${movie}`);
     let imgUrl;
     let imgAlt;
-    // const imgUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}` : defaultPoster;
     if (movie.poster_path) {
         imgUrl = `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`;
         imgAlt = `${movie.title} movie poster`;
@@ -17,10 +14,16 @@ function MovieCard(props) {
     }
 
     return (
-        <div class="card">
-            <h2 class="card--title">{movie.title}</h2>
-            <img class="card--img" src={imgUrl} alt={imgAlt} />
-            <h3 class="card--overview">{movie.overview}</h3>
+        <div className="card-wrapper">
+            <div className="card">
+                <h2>{movie.title}</h2>
+                <img className="card--img" src={imgUrl} alt={imgAlt} />
+            </div>
+            <div className="card-details">
+                <h2>{movie.title}</h2>
+                <span className="card--info">Released on <strong>{movie.release_date}</strong></span>
+                <h3 className="card--overview">{movie.overview}</h3>
+            </div>
         </div>
     )
 }

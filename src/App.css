@@ -1,7 +1,17 @@
+body {
+    margin: 0;
+}
+
 .App {
+    position: relative;
+    min-height: 100vh;
     text-align: center;
 }
 
-.App-link {
+.content-wrapper {
+    padding-bottom: 10em;
+}
+
+a {
     color: #61dafb;
 }

@@ -5,7 +5,8 @@ import MovieCard from './MovieCard.js';
 function Searchbar() {
     const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
-    const [disableBtn, setDisableBtn] = useState(false);
+    const [showMore, setShowMore] = useState(true);
+    const [totalResults, setTotalResults] = useState(-1);
     const pageRef = useRef(1);
 
 
@@ -16,7 +17,8 @@ function Searchbar() {
             const response = await fetch(apiUrl);
             const data = await response.json();
             resetResults ? setMovies(data.results) : setMovies(movies.concat(data.results));
-            checkLoadMore(data.total_pages);
+            pageRef.current === data.total_pages ? setShowMore(true) : setShowMore(false);
+            setTotalResults(data.total_results);
         } catch (error) {
             console.error(error + " No More Movies to Display");
         }
@@ -24,22 +26,15 @@ function Searchbar() {
 
     const querySearch = e => {
         e.preventDefault();
+        if (!query) return;
         pageRef.current = 1;
         fetchApi(true);
     }
 
-    const loadMovies = e => {
+    const loadMore = e => {
         e.preventDefault();
         pageRef.current = pageRef.current + 1;
         fetchApi(false);
-    }
-
-    const checkLoadMore = total => {
-        if (pageRef.current === total) {
-            setDisableBtn(true);
-        } else {
-            setDisableBtn(false);
-        }
     }
 
     return (
@@ -47,7 +42,7 @@ function Searchbar() {
             <form className="search-form" onSubmit={querySearch}>
                 <label className="movie-label" htmlFor="search">Movie:</label>
                 <input 
-                    class="searchbar"
+                    className="searchbar"
                     name="search"
                     type="text" 
                     placeholder="e.g. Parasite" 
@@ -57,17 +52,20 @@ function Searchbar() {
                 <button className="btn-search">Search</button>
             </form>
             <div>
-                <h2>{movies.length} Results</h2>
-                {
-                    movies.map(movie =>
-                        <MovieCard movie={movie} key={movie.id} />
-                    )
-                }
+                {totalResults < 0 ? null 
+                    : totalResults === 1 ? <h2>{totalResults} movie found</h2>
+                    : <h2>{totalResults} movies found</h2>}
+                <div className="cards-container">
+                    <div className="movie-cards">
+                        {movies.map(movie =>
+                                <MovieCard movie={movie} key={movie.id} />
+                            )}
+                    </div>
+                    {showMore ? null : <button className="btn-show-more" onClick={loadMore} type="button">Show More</button>}
+                </div>
             </div>
             
-            <div>
-                <button disabled={disableBtn} className="btn-load-more" onClick={loadMovies} type="button">Load More</button>
-            </div>
+            
             
         </>
     )
@@ -76,13 +74,19 @@ function Searchbar() {
 export default Searchbar
 
 /* TODO: 
-    - error handling
+
+    - css grid for large screens
+    - hide results initially
     - hide "load more" initially
+
+
+    - scroll bar to read description?
     - scroll to top button
-    - css styling
     - auto search?
     - sort by popularity
     - sort by release date
     - filter by genre
-    - switch to TV shows
+    - switch for TV shows
+    - better css styling
+    - better error handling
 */
