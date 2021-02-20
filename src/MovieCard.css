@@ -25,7 +25,7 @@
     width: calc(100% - (1.5em * 2));
     height: calc(100% - (1.5em * 2));
     background: white;
-    overflow: scroll;
+    overflow: auto;
     cursor: pointer;
     opacity: 0;
     transition: opacity .8s ease;
