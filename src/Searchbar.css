@@ -1,4 +1,6 @@
-/* form styles */
+/***********************
+ form styles 
+ ***********************/
 
 .search-form {
     display: flex;
@@ -20,13 +22,13 @@
 }
 
 .searchbar:focus,
-.btn-search:focus,
+/* .btn-search:focus, */
 .btn-show-more:focus {
     outline: transparent;
     box-shadow: 0 0 3pt 2pt #61dafb;
 }
 
-.btn-search {
+/* .btn-search {
     background: #282c34;
     color: white;
     padding: 1em 2em;
@@ -36,12 +38,19 @@
     cursor: pointer;
     transition: background-color 250ms;
 }
+.btn-search:hover, */
 
-.btn-search:hover {
-    background-color: rgba(0,0,0,0.75);
+/***********************
+ number of results 
+ ***********************/
+
+.results-num {
+    color: rgba(0,0,0,0.33);
 }
 
-/* card styles */
+/***********************
+ card styles 
+ ***********************/
 
 .cards-container {
     padding: 1em 2em;
@@ -49,24 +58,63 @@
 
 .movie-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1rem;
 }
 
-/* show more */
+/***********************
+ buttons
+ ***********************/
 
 .btn-show-more {
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
     width: 100%;
     margin-top: 2em;
     padding: 1em 2em;
     border-radius: 15px;
     border: 1px solid rgba(0,0,0,0.25);
     font-size: 1em;
+    transition: background-color 500ms;
+}
+.btn-show-more:hover {
+    background-color: rgba(0,0,0,0.75);
+    color:white;
+}
+.btn-scroll {
+    position: fixed;
+    bottom: 35px;
+    right: 0px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #61dafb;
+    color: #282c34;
+    font-weight: bold;
+    cursor: pointer;
+    padding: .5em 1em;
+    width: 75px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19),
+    0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
+    transition: all 0.5s ease-in-out;
+}
+.fade-out {
+    right: -100px;
 }
 
-/* media queries */
+.btn-scroll p {
+    margin: 0;
+}
+.btn-scroll .arrow {
+    font-size: 2rem;
+    margin-bottom: 0.2em;
+}
+
+/***********************
+ media queries 
+ ***********************/
 
 @media (min-width: 1000px) {
     .search-form {
@@ -79,6 +127,7 @@
     }
     .searchbar {
         margin: 0 1em 0 0;
+        width: 30%;
     }
     .btn-search {
         display: inline-block;
@@ -86,5 +135,17 @@
     }
     .btn-show-more {
         width: 40%;
+    }
+    .btn-scroll {
+        font-size: 1rem;
+        bottom: 70px;
+        padding: 1em 2em;
+        width: 100px;
+    }
+    .btn-scroll .arrow {
+        font-size: 2.5rem;
+    }
+    .fade-out {
+        right: -115px;
     }
 }
