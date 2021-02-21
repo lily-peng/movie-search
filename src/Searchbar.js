@@ -65,7 +65,7 @@ function Searchbar() {
                     className="searchbar"
                     name="search"
                     type="text" 
-                    placeholder="e.g. Jurassic Park, Parasite, etc..." 
+                    placeholder="e.g. Jurassic Park, etc..." 
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                 />
@@ -98,17 +98,11 @@ function Searchbar() {
 export default Searchbar
 
 /* TODO: 
-    
-    - auto search (search-as-you-type)
-
     - scroll bar to read description?
-    - scroll to top button
     - sort by popularity
     - sort by release date
     - filter by genre
     - switch for TV shows
     - better css styling
     - better error handling
-
-                    style={{display: showScroll ? 'flex' : 'none'}} 
 */
