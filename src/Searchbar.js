@@ -60,8 +60,9 @@ function Searchbar() {
     return (
         <>
             <form className="search-form" onSubmit={e => e.preventDefault()}>
-                <label className="movie-label" htmlFor="search">Movie Title:</label>
+                <label className="movie-label" htmlFor="search">Movie Title!:</label>
                 <input 
+                    id="search"
                     className="searchbar"
                     name="search"
                     type="text" 
